@@ -45,7 +45,6 @@
     "targets": "all",
     "macOS": {
       "minimumSystemVersion": "11.0",
-      "signingIdentity": "RootVox Dev",
       "entitlements": "Entitlements.plist"
     },
     "icon": [
