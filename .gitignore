@@ -1,0 +1,40 @@
+# Rust / Cargo
+/target/
+**/*.rs.bk
+# Note: Cargo.lock IS committed (rootvox is an app, not a lib) — reproducible builds
+
+# Tauri
+/src-tauri/target/
+/src-tauri/gen/
+
+# Node (Tauri frontend)
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Models (large binaries — don't commit weights)
+*.gguf
+*.bin
+*.onnx
+models/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / secrets
+.env
+.env.local
+
+# Editor
+.idea/
+*.swp
+.vscode/*
+!.vscode/extensions.json

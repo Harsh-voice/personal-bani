@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RootVox</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <header class="app-header">
+        <div class="term-bar">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+          <span class="term-title">rootvox@local:~</span>
+        </div>
+        <div class="hero">
+          <h1>Root<span class="accent">Vox</span></h1>
+          <p class="tagline">
+            Local voice dictation. Hold <kbd>Right ⌥</kbd>, speak, release —
+            text lands at your cursor. No cloud.
+          </p>
+          <p class="status"><span class="status-dot" aria-hidden="true"></span><span id="status">Loading…</span></p>
+        </div>
+      </header>
+
+      <form id="settings" class="settings">
+        <section class="card">
+          <h2><span class="prompt">❯</span> ai cleanup</h2>
+          <label class="switch-row">
+            <span class="switch-label">
+              LLM cleanup
+              <small>strip fillers, fix grammar, apply self-corrections</small>
+            </span>
+            <input id="cleanup_enabled" type="checkbox" />
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+          <div class="grid-2">
+            <label>
+              Ollama URL
+              <input id="ollama_url" type="text" spellcheck="false" />
+            </label>
+            <label>
+              Model
+              <select id="ollama_model"></select>
+            </label>
+          </div>
+          <label>
+            Min characters
+            <small>transcripts at or below this skip cleanup</small>
+            <input id="cleanup_min_chars" type="number" min="0" />
+          </label>
+        </section>
+
+        <section class="card">
+          <h2><span class="prompt">❯</span> dictionary</h2>
+          <label>
+            Terms
+            <small>one per line — names &amp; jargon, exact spelling you want</small>
+            <textarea
+              id="dictionary"
+              rows="5"
+              spellcheck="false"
+              placeholder="RootVox&#10;Ollama&#10;Wispr Flow"
+            ></textarea>
+          </label>
+          <label>
+            Replacements
+            <small>wrong -&gt; right, one per line — fixes sound-alike misses</small>
+            <textarea
+              id="replacements"
+              rows="4"
+              spellcheck="false"
+              placeholder="cyber syon -> Cyberpsyon&#10;rude fox -> RootVox"
+            ></textarea>
+          </label>
+        </section>
+
+        <section class="card">
+          <h2><span class="prompt">❯</span> speech to text</h2>
+          <label>
+            Whisper model path
+            <small>restart to apply</small>
+            <input id="whisper_model_path" type="text" spellcheck="false" />
+          </label>
+        </section>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Save settings</button>
+          <button type="button" id="test-inject" class="btn btn-ghost">
+            Test injection <small>3s delay</small>
+          </button>
+        </div>
+      </form>
+
+      <footer class="app-footer">
+        <span>RootVox v0.1.0</span>
+        <span class="sep">·</span>
+        <span>100% local — audio never leaves this Mac</span>
+      </footer>
+    </main>
+  </body>
+</html>

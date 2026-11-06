@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>RootVox overlay</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+        overflow: hidden;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+      }
+      #pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 36px;
+        margin-top: 4px;
+        padding: 0 14px;
+        background: rgba(13, 20, 33, 0.92); /* --cp-surface */
+        border: 1px solid #1e2d3d; /* --cp-border */
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        font:
+          500 12px "JetBrains Mono",
+          "Fira Code",
+          ui-monospace,
+          Menlo,
+          monospace;
+        color: #e2e8f0; /* --cp-text */
+        width: max-content;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      #dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ef4444; /* --cp-alert */
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+      }
+      .recording #dot {
+        animation: pulse 1.2s ease-in-out infinite;
+      }
+      .processing #dot {
+        background: #25c2a0; /* --cp-accent */
+        box-shadow: 0 0 10px rgba(37, 194, 160, 0.6);
+        animation: blink 0.8s linear infinite;
+      }
+      .error #dot {
+        background: #ef4444;
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+        animation: none;
+      }
+      .error {
+        border-color: #ef4444 !important;
+      }
+      .silent #dot {
+        background: #f59e0b; /* amber warn */
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
+        animation: none;
+      }
+      .silent {
+        border-color: #f59e0b !important;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.75);
+        }
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+    </style>
+    <script type="module" src="/src/overlay.ts" defer></script>
+  </head>
+  <body>
+    <div id="pill" class="recording">
+      <span id="dot"></span>
+      <span id="label">Listening…</span>
+    </div>
+  </body>
+</html>
